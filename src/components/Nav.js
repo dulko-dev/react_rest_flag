@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,18 +30,18 @@ const Text = styled.p`
   padding-left: 5px;
 `;
 
-export default class Nav extends Component {
-  render() {
-    return (
-      <WrapperNav>
-        <ContainerNav>
-          <NameNav>Where in the world?</NameNav>
-          <IconNav>
-            <FontAwesomeIcon icon={faMoon} size="lg" />
-            <Text>Dark Mode</Text>
-          </IconNav>
-        </ContainerNav>
-      </WrapperNav>
-    );
-  }
+function Nav() {
+  return (
+    <WrapperNav>
+      <ContainerNav>
+        <NameNav>Where in the world?</NameNav>
+        <IconNav>
+          <FontAwesomeIcon icon={faMoon} size="lg" />
+          <Text>Dark Mode</Text>
+        </IconNav>
+      </ContainerNav>
+    </WrapperNav>
+  );
 }
+
+export default Nav;
