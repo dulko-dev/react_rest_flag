@@ -19,17 +19,17 @@ const FirstRowContainer = styled.div`
 
 const SecondRowContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  width:inherit;
-  
+  width: 1400px;
 `;
 
 function Flags() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState("");
   const [error, setError] = useState("");
+  const [inputField, setInputField] = useState("");
+  const [filteredCountries, setfilteredCountries] = useState("");
 
-  console.log(data);
   useEffect(() => {
     let abort = new AbortController();
     const fetchData = async () => {
@@ -44,7 +44,6 @@ function Flags() {
       const flags = await response.json();
       return flags;
     };
-
     fetchData()
       .then((data) => setData(data))
       .catch((error) => {
@@ -53,16 +52,26 @@ function Flags() {
     return () => abort.abort();
   }, []);
 
+  useEffect(() => {
+    setfilteredCountries(
+      Array.isArray(data) &&
+        data.filter((country) => {
+          return country.name.toLowerCase().includes(inputField.toLowerCase());
+        })
+    );
+  }, [inputField, data]);
+
   return (
     <WrapperFlags>
       <FirstRowContainer>
-        <InputFlags />
+        <InputFlags setInputField={setInputField} inputField={inputField} />
         <SelectorFlags />
       </FirstRowContainer>
       <SecondRowContainer>
-        {data.map((flag) => (
-          <DisplayFlags flag={flag} key={flag.numericCode} />
-        ))}
+        {Array.isArray(filteredCountries) &&
+          filteredCountries.map((flag) => (
+            <DisplayFlags flag={flag} key={flag.numericCode} />
+          ))}
       </SecondRowContainer>
     </WrapperFlags>
   );

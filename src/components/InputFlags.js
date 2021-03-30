@@ -14,7 +14,12 @@ const Input = styled.input`
   border-radius: 7px;
 `;
 
-function InputFlags() {
+function InputFlags({setInputField, inputField}) {
+
+  const handleChange = (e) => {
+    setInputField(e.target.value)
+  }
+
   return (
     <>
       <FontAwesomeIcon
@@ -28,7 +33,7 @@ function InputFlags() {
           zIndex: "1",
         }}
       />
-      <Input placeholder="Search for a country" />;
+      <Input placeholder="Search for a country" onChange={handleChange} value={inputField} />;
     </>
   );
 }
