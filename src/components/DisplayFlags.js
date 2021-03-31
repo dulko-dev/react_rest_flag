@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const WrapperDisplayFlags = styled.div`
-  color: #fff;
   height: 350px;
   border: 15px solid #2b3945;
   border-radius: 15px;
@@ -28,12 +27,10 @@ const TextFlags = styled.p`
 
 const SpanFlags = styled.span`
   color: rgba(255, 255, 255, 0.6);
-  padding-left:10px;
+  padding-left: 10px;
 `;
 
-function DisplayFlags({ flag, region }) {
-console.log(region)
-
+function DisplayFlags({ flag }) {
   return (
     <WrapperDisplayFlags>
       <ImageFlags src={flag.flag} />

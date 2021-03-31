@@ -33,7 +33,7 @@ function InputFlags({setInputField, inputField}) {
           zIndex: "1",
         }}
       />
-      <Input placeholder="Search for a country" onChange={handleChange} value={inputField} />;
+      <Input placeholder="Search for a country" onChange={handleChange} value={inputField} />
     </>
   );
 }

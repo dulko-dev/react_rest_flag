@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const WrapperNav = styled.div`
@@ -24,20 +24,26 @@ const NameNav = styled.h2`
 const IconNav = styled.div`
   display: flex;
   justify-content: center;
+  cursor: pointer;
 `;
 const Text = styled.p`
   align-self: center;
   padding-left: 5px;
 `;
 
-function Nav() {
+function Nav({ handleChangeTheme, theme }) {
   return (
     <WrapperNav>
       <ContainerNav>
         <NameNav>Where in the world?</NameNav>
-        <IconNav>
-          <FontAwesomeIcon icon={faMoon} size="lg" />
-          <Text>Dark Mode</Text>
+        <IconNav onClick={handleChangeTheme}>
+          {theme === "light" ? (
+            <FontAwesomeIcon icon={faMoon} size="lg" />
+          ) : (
+            <FontAwesomeIcon icon={faSun} size="lg" />
+          )}
+
+          <Text>{theme === "light" ? "Dark Mode" : "Light Mode"}</Text>
         </IconNav>
       </ContainerNav>
     </WrapperNav>

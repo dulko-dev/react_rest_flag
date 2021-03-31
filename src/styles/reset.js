@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export const ResetStyles = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0-modified | 20110126
    License: none (public domain)
@@ -161,9 +164,6 @@ textarea {
   resize: vertical;
 }
 
-/**
- * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
- */
 
 audio,
 canvas,
@@ -174,31 +174,19 @@ video {
   max-width: 100%;
 }
 
-/**
- * Prevent modern browsers from displaying `audio` without controls.
- * Remove excess height in iOS 5 devices.
- */
+
 
 audio:not([controls]) {
   display: none;
   height: 0;
 }
 
-/**
- * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
- * Known issue: no IE 6 support.
- */
 
 [hidden] {
   display: none;
 }
 
-/**
- * 1. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
- *    `em` units.
- * 2. Prevent iOS text size adjust after orientation change, without disabling
- *    user zoom.
- */
+
 
 html {
   font-size: 100%; /* 1 */
@@ -206,52 +194,35 @@ html {
   -ms-text-size-adjust: 100%; /* 2 */
 }
 
-/**
- * Address `outline` inconsistency between Chrome and other browsers.
- */
+
 
 a:focus {
   outline: thin dotted;
 }
 
-/**
- * Improve readability when focused and also mouse hovered in all browsers.
- */
 
 a:active,
 a:hover {
   outline: 0;
 }
 
-/**
- * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
- * 2. Improve image quality when scaled in IE 7.
- */
 
 img {
   border: 0; /* 1 */
   -ms-interpolation-mode: bicubic; /* 2 */
 }
 
-/**
- * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
- */
 
 figure {
   margin: 0;
 }
 
-/**
- * Correct margin displayed oddly in IE 6/7.
- */
+
 
 form {
   margin: 0;
 }
 
-/**
- * Define consistent border, margin, and padding.
- */
 
 fieldset {
   border: 1px solid #c0c0c0;
@@ -289,37 +260,20 @@ textarea {
   *vertical-align: middle; /* 3 */
 }
 
-/**
- * Address Firefox 3+ setting `line-height` on `input` using `!important` in
- * the UA stylesheet.
- */
+
 
 button,
 input {
   line-height: normal;
 }
 
-/**
- * Address inconsistent `text-transform` inheritance for `button` and `select`.
- * All other form control elements do not inherit `text-transform` values.
- * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
- * Correct `select` style inheritance in Firefox 4+ and Opera.
- */
+
 
 button,
 select {
   text-transform: none;
 }
 
-/**
- * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
- *    and `video` controls.
- * 2. Correct inability to style clickable `input` types in iOS.
- * 3. Improve usability and consistency of cursor style between image-type
- *    `input` and others.
- * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
- *    Known issue: inner spacing remains in IE 6.
- */
 
 button,
 html input[type="button"], /* 1 */
@@ -353,12 +307,6 @@ input[type="radio"] {
   *height: 13px; /* 3 */
   *width: 13px; /* 3 */
 }
-
-/**
- * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
- * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
- *    (include `-moz` to future-proof).
- */
 
 input[type="search"] {
   -webkit-appearance: textfield; /* 1 */
@@ -444,3 +392,5 @@ textarea {
   color: #000;
   padding: 0.2em 0;
 }
+
+`;
