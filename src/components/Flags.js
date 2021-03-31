@@ -28,7 +28,7 @@ const Error = styled.p`
   margin: 0 auto;
   font-size: 3em;
   font-weight: 600;
-  color: #fff;
+  color: ${({ theme }) => theme.text};
 `;
 
 function Flags() {

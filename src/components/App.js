@@ -13,6 +13,8 @@ const WrapperApp = styled.div`
 function App() {
   const [theme, setTheme] = useState("light");
 
+  const themeMode = theme === "light" ? lightTheme : darkTheme;
+
   const handleChangeTheme = () => {
     if (theme === "light") {
       setTheme("dark");
@@ -22,12 +24,12 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={themeMode}>
       <>
         <GlobalStyle />
         <ResetStyles />
         <WrapperApp>
-          <Nav handleChangeTheme={handleChangeTheme} theme={theme}/>
+          <Nav handleChangeTheme={handleChangeTheme} theme={theme} />
           <Flags />
         </WrapperApp>
       </>

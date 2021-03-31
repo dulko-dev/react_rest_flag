@@ -4,7 +4,8 @@ import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const WrapperNav = styled.div`
-  background-color: #2b3945;
+  background-color: ${({ theme }) => theme.nav};
+  color: ${({ theme }) => theme.text};
   width: 100%;
 `;
 const ContainerNav = styled.div`
@@ -14,7 +15,6 @@ const ContainerNav = styled.div`
   height: 100px;
   width: 1400px;
   margin: 0 auto;
-  color: #fff;
 `;
 
 const NameNav = styled.h2`

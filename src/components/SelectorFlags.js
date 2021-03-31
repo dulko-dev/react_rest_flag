@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Selector = styled.select`
   padding: 20px 40px;
-  color: #fff;
+  color: ${({ theme }) => theme.text};
   border: none;
   border-radius: 7px;
-  background-color: #2b3945;
+  background-color: ${({ theme }) => theme.nav};
   text-align-last: center;
   cursor: pointer;
   appearance: none;
@@ -20,13 +20,12 @@ const WrapperSelector = styled.div`
   position: relative;
 `;
 
-function SelectorFlags({setRegion }) {
+function SelectorFlags({ setRegion }) {
   return (
     <WrapperSelector>
       <FontAwesomeIcon
         icon={faArrowAltCircleDown}
         style={{
-          color: "#fff",
           position: "absolute",
           right: "12px",
           top: "50%",

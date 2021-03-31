@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const WrapperDisplayFlags = styled.div`
   height: 350px;
-  border: 15px solid #2b3945;
+  border: 15px solid ${({theme}) => theme.nav};
   border-radius: 15px;
   width: 280px;
   margin: 15px 30px;
@@ -26,7 +26,7 @@ const TextFlags = styled.p`
 `;
 
 const SpanFlags = styled.span`
-  color: rgba(255, 255, 255, 0.6);
+  color: ${({theme}) => theme.sub};
   padding-left: 10px;
 `;
 
