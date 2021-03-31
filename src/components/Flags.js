@@ -24,11 +24,50 @@ const SecondRowContainer = styled.div`
   width: 1400px;
 `;
 
+const Error = styled.p`
+  margin: 0 auto;
+  font-size: 3em;
+  font-weight: 600;
+  color: #fff;
+`;
+
 function Flags() {
   const [data, setData] = useState("");
   const [error, setError] = useState("");
   const [inputField, setInputField] = useState("");
   const [filteredCountries, setfilteredCountries] = useState("");
+  const [region, setRegion] = useState("filter");
+
+  useEffect(() => {
+    const filterRegion = () => {
+      switch (region) {
+        case "africa":
+          setfilteredCountries(
+            Array.isArray(data) && data.filter((el) => el.region === "Africa")
+          );
+          break;
+        case "asia":
+          setfilteredCountries(
+            Array.isArray(data) && data.filter((el) => el.region === "Asia")
+          );
+          break;
+        case "europe":
+          setfilteredCountries(
+            Array.isArray(data) && data.filter((el) => el.region === "Europe")
+          );
+          break;
+        case "oceania":
+          setfilteredCountries(
+            Array.isArray(data) && data.filter((el) => el.region === "Oceania")
+          );
+          break;
+        default:
+          setfilteredCountries(data);
+      }
+    };
+
+    filterRegion();
+  }, [region, data]);
 
   useEffect(() => {
     let abort = new AbortController();
@@ -65,13 +104,14 @@ function Flags() {
     <WrapperFlags>
       <FirstRowContainer>
         <InputFlags setInputField={setInputField} inputField={inputField} />
-        <SelectorFlags />
+        <SelectorFlags setRegion={setRegion} />
       </FirstRowContainer>
       <SecondRowContainer>
         {Array.isArray(filteredCountries) &&
           filteredCountries.map((flag) => (
-            <DisplayFlags flag={flag} key={flag.numericCode} />
+            <DisplayFlags flag={flag} key={flag.numericCode} region={region} />
           ))}
+        <Error>{error}</Error>
       </SecondRowContainer>
     </WrapperFlags>
   );

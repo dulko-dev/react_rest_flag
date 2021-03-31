@@ -31,8 +31,8 @@ const SpanFlags = styled.span`
   padding-left:10px;
 `;
 
-function DisplayFlags({ flag }) {
-
+function DisplayFlags({ flag, region }) {
+console.log(region)
 
   return (
     <WrapperDisplayFlags>
