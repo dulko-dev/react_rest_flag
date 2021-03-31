@@ -3,6 +3,7 @@ import InputFlags from "./InputFlags";
 import SelectorFlags from "./SelectorFlags";
 import DisplayFlags from "./DisplayFlags";
 import styled from "styled-components";
+import loading from '../assets/loading.gif';
 
 const WrapperFlags = styled.div`
   width: 1400px;
@@ -31,12 +32,24 @@ const Error = styled.p`
   color: ${({ theme }) => theme.text};
 `;
 
+const Loading = styled.img.attrs({
+src: `${loading}`,
+})`
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+`;
+
 function Flags() {
   const [data, setData] = useState("");
   const [error, setError] = useState("");
   const [inputField, setInputField] = useState("");
   const [filteredCountries, setfilteredCountries] = useState("");
   const [region, setRegion] = useState("filter");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const filterRegion = () => {
@@ -70,6 +83,7 @@ function Flags() {
   }, [region, data]);
 
   useEffect(() => {
+    setLoading(true);
     let abort = new AbortController();
     const fetchData = async () => {
       const response = await fetch(`https://restcountries.eu/rest/v2/all`, {
@@ -81,6 +95,7 @@ function Flags() {
         setError(message);
       }
       const flags = await response.json();
+      setLoading(false);
       return flags;
     };
     fetchData()
@@ -88,6 +103,7 @@ function Flags() {
       .catch((error) => {
         console.log(error);
       });
+
     return () => abort.abort();
   }, []);
 
@@ -106,6 +122,7 @@ function Flags() {
         <InputFlags setInputField={setInputField} inputField={inputField} />
         <SelectorFlags setRegion={setRegion} />
       </FirstRowContainer>
+      {loading && <Loading />}
       <SecondRowContainer>
         {Array.isArray(filteredCountries) &&
           filteredCountries.map((flag) => (
