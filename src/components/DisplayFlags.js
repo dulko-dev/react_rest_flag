@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const WrapperDisplayFlags = styled.div`
   height: 350px;
-  border: 15px solid ${({theme}) => theme.nav};
+  border: 15px solid ${({ theme }) => theme.nav};
   border-radius: 15px;
   width: 280px;
   margin: 15px 30px;
@@ -26,27 +27,41 @@ const TextFlags = styled.p`
 `;
 
 const SpanFlags = styled.span`
-  color: ${({theme}) => theme.sub};
+  color: ${({ theme }) => theme.sub};
   padding-left: 10px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.text};
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;
 
 function DisplayFlags({ flag }) {
   return (
     <WrapperDisplayFlags>
       <ImageFlags src={flag.flag} />
-      <NameFlags>{flag.name}</NameFlags>
-      <TextFlags>
-        Population:
-        <SpanFlags>{flag.population}</SpanFlags>
-      </TextFlags>
-      <TextFlags>
-        Region:
-        <SpanFlags>{flag.region}</SpanFlags>
-      </TextFlags>
-      <TextFlags>
-        Capital:
-        <SpanFlags>{flag.capital}</SpanFlags>
-      </TextFlags>
+      <StyledLink to={`/${flag.alpha3Code}`}>
+        <NameFlags>{flag.name}</NameFlags>
+        <TextFlags>
+          Population:
+          <SpanFlags>{flag.population}</SpanFlags>
+        </TextFlags>
+        <TextFlags>
+          Region:
+          <SpanFlags>{flag.region}</SpanFlags>
+        </TextFlags>
+        <TextFlags>
+          Capital:
+          <SpanFlags>{flag.capital}</SpanFlags>
+        </TextFlags>
+      </StyledLink>
     </WrapperDisplayFlags>
   );
 }

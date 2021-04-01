@@ -3,7 +3,7 @@ import InputFlags from "./InputFlags";
 import SelectorFlags from "./SelectorFlags";
 import DisplayFlags from "./DisplayFlags";
 import styled from "styled-components";
-import loading from '../assets/loading.gif';
+import loading from "../assets/loading.gif";
 
 const WrapperFlags = styled.div`
   width: 1400px;
@@ -33,7 +33,7 @@ const Error = styled.p`
 `;
 
 const Loading = styled.img.attrs({
-src: `${loading}`,
+  src: `${loading}`,
 })`
   position: fixed;
   left: 50%;
@@ -122,14 +122,21 @@ function Flags() {
         <InputFlags setInputField={setInputField} inputField={inputField} />
         <SelectorFlags setRegion={setRegion} />
       </FirstRowContainer>
-      {loading && <Loading />}
-      <SecondRowContainer>
-        {Array.isArray(filteredCountries) &&
-          filteredCountries.map((flag) => (
-            <DisplayFlags flag={flag} key={flag.numericCode} region={region} />
-          ))}
-        <Error>{error}</Error>
-      </SecondRowContainer>
+      {loading ? (
+        <Loading />
+      ) : (
+        <SecondRowContainer>
+          {Array.isArray(filteredCountries) &&
+            filteredCountries.map((flag) => (
+              <DisplayFlags
+                flag={flag}
+                key={flag.numericCode}
+                region={region}
+              />
+            ))}
+          <Error>{error}</Error>
+        </SecondRowContainer>
+      )}
     </WrapperFlags>
   );
 }
