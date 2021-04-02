@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import loading from "../assets/loading.gif";
+import { Link } from "react-router-dom";
 
 const WrapperDetail = styled.div`
-  height: 100%;
   width: 1400px;
   margin: 0 auto;
 `;
@@ -24,12 +24,12 @@ const BackButton = styled.button`
 `;
 
 const ContainerDetail = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   margin-top: 75px;
 `;
 const FlagBox = styled.div`
-  margin-right: 50px;
   width: 600px;
   height: 400px;
   border: 15px solid ${({ theme }) => theme.nav};
@@ -43,22 +43,27 @@ const FlagImg = styled.img`
 const TextBox = styled.div`
   position: relative;
   margin-left: 50px;
-  width: 100%;
-  flex-basis: 45%;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
 `;
+
 const Title = styled.h2`
   font-size: 2.2em;
   padding-bottom: 20px;
 `;
+
 const Text = styled.p`
+  width: inherit;
   padding-bottom: 15px;
   color: ${({ theme }) => theme.sub};
   &:last-child {
-    position: absolute;
-    bottom: 0;
+    padding-top: 35px;
+    width: 600px;
   }
 `;
 const SpanText = styled.span`
+  width: 100%;
   font-weight: 600;
   padding-left: 10px;
   color: ${({ theme }) => theme.text};
@@ -70,6 +75,9 @@ const BordersBorder = styled.span`
   padding: 2px 22px;
   margin-right: 5px;
   cursor: pointer;
+  display:inline-block;
+  margin-top: 5px;
+  margin-bottom: 5px;
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
       rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
@@ -84,6 +92,25 @@ const LoadIcon = styled.img.attrs({
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.text};
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
+
+const Error = styled.p`
+  margin: 0 auto;
+  font-size: 3em;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text};
 `;
 
 function NationDetails({ match }) {
@@ -114,9 +141,8 @@ function NationDetails({ match }) {
       .then((data) => setDetail(data))
       .catch((err) => console.log(err));
     return () => abort.abort();
-  }, []);
+  }, [match.params.id]);
 
-  console.log(detail.borders);
   return (
     <WrapperDetail>
       <BackButton type="button" onClick={() => backSite.push("/")}>
@@ -161,7 +187,7 @@ function NationDetails({ match }) {
                       style={{ paddingRight: "7px", display: "inline-block" }}
                       key={index}
                     >
-                      {el.symbol}
+                      {el.name}
                     </span>
                   ))}
               </SpanText>
@@ -188,11 +214,14 @@ function NationDetails({ match }) {
               <SpanText>
                 {detail.borders &&
                   detail.borders.map((el, index) => (
-                    <BordersBorder key={index}>{el}</BordersBorder>
+                    <StyledLink to={`/${el}`} key={index}>
+                      <BordersBorder >{el}</BordersBorder>
+                    </StyledLink>
                   ))}
               </SpanText>
             </Text>
           </TextBox>
+          <Error>{error}</Error>
         </ContainerDetail>
       )}
     </WrapperDetail>
