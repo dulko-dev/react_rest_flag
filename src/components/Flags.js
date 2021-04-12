@@ -6,11 +6,11 @@ import styled from "styled-components";
 import loading from "../assets/loading.gif";
 
 const WrapperFlags = styled.div`
-  width: 1400px;
+  max-width: 1400px;
   margin: 0 auto;
 `;
 const FirstRowContainer = styled.div`
-  width: inherit;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
   height: 15vh;
@@ -22,7 +22,7 @@ const SecondRowContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  width: 1400px;
+  max-width: 1400px;
 `;
 
 const Error = styled.p`

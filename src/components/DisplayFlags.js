@@ -6,7 +6,7 @@ const WrapperDisplayFlags = styled.div`
   height: 350px;
   border: 15px solid ${({ theme }) => theme.nav};
   border-radius: 15px;
-  width: 280px;
+  max-width: 280px;
   margin: 15px 30px;
 `;
 

@@ -9,16 +9,27 @@ const WrapperNav = styled.div`
   width: 100%;
 `;
 const ContainerNav = styled.div`
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  width: 1400px;
   margin: 0 auto;
+
+  @media (max-width: 1400px) {
+    padding: 0 20px;
+  }
 `;
 
 const NameNav = styled.h2`
   font-size: 2.2em;
+
+  @media (max-width: 498px) and (min-width: 372px) {
+    font-size: 1.5em;
+  }
+  @media (max-width: 371px) {
+    font-size: 1em;
+  }
 `;
 
 const IconNav = styled.div`
@@ -29,6 +40,16 @@ const IconNav = styled.div`
 const Text = styled.p`
   align-self: center;
   padding-left: 5px;
+
+  @media (max-width: 498px) {
+    font-size: 0.8em;
+  }
+`;
+
+const FontAwesomeStyle = styled(FontAwesomeIcon)`
+  @media (max-width:498px){
+    font-size:0.8em;
+  }
 `;
 
 function Nav({ handleChangeTheme, theme }) {
@@ -38,9 +59,9 @@ function Nav({ handleChangeTheme, theme }) {
         <NameNav>Where in the world?</NameNav>
         <IconNav onClick={handleChangeTheme}>
           {theme === "light" ? (
-            <FontAwesomeIcon icon={faMoon} size="lg" />
+            <FontAwesomeStyle icon={faMoon} size="lg" />
           ) : (
-            <FontAwesomeIcon icon={faSun} size="lg" />
+            <FontAwesomeStyle icon={faSun} size="lg" />
           )}
 
           <Text>{theme === "light" ? "Dark Mode" : "Light Mode"}</Text>
