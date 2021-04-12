@@ -7,6 +7,10 @@ const WrapperNav = styled.div`
   background-color: ${({ theme }) => theme.nav};
   color: ${({ theme }) => theme.text};
   width: 100%;
+
+  @media (max-width: 1400px) {
+    min-width: 193px;
+  }
 `;
 const ContainerNav = styled.div`
   max-width: 1400px;
@@ -18,7 +22,9 @@ const ContainerNav = styled.div`
 
   @media (max-width: 1400px) {
     padding: 0 20px;
+    min-width: 193px;
   }
+
 `;
 
 const NameNav = styled.h2`
@@ -47,8 +53,8 @@ const Text = styled.p`
 `;
 
 const FontAwesomeStyle = styled(FontAwesomeIcon)`
-  @media (max-width:498px){
-    font-size:0.8em;
+  @media (max-width: 498px) {
+    font-size: 0.8em;
   }
 `;
 

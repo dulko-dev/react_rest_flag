@@ -20,18 +20,17 @@ const WrapperSelector = styled.div`
   position: relative;
 `;
 
+const FontAwesomeStyle = styled(FontAwesomeIcon)`
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+`;
+
 function SelectorFlags({ setRegion }) {
   return (
     <WrapperSelector>
-      <FontAwesomeIcon
-        icon={faArrowAltCircleDown}
-        style={{
-          position: "absolute",
-          right: "12px",
-          top: "50%",
-          transform: "translateY(-50%)",
-        }}
-      />
+      <FontAwesomeStyle icon={faArrowAltCircleDown} />
       <Selector onChange={(e) => setRegion(e.target.value)}>
         <option value="filter">Filter by Region</option>
         <option value="all">All Region</option>

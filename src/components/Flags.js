@@ -13,9 +13,23 @@ const FirstRowContainer = styled.div`
   max-width: 1400px;
   display: flex;
   justify-content: space-between;
-  height: 15vh;
+  height: 140px;
+  flex-wrap: wrap;
   align-items: center;
   position: relative;
+
+  @media (max-width: 1400px) and (min-width: 212px) {
+    margin: 0 20px;
+  }
+
+  @media (max-width: 425px) and (min-width: 212px) {
+    justify-content: center;
+    min-width: 193px;
+  }
+  @media (max-width: 193px) {
+    justify-content: flex-start;
+    margin: 0;
+  }
 `;
 
 const SecondRowContainer = styled.div`

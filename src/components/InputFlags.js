@@ -7,11 +7,24 @@ const Input = styled.input`
   color: ${({ theme }) => theme.text};
   position: relative;
   width: 400px;
-  height: 7vh;
+  height: 65px;
   padding-left: 40px;
   background-color: ${({ theme }) => theme.nav};
   border: none;
   border-radius: 7px;
+
+  @media (max-width: 632px) {
+    margin: 10px 0;
+    max-width:193px;
+  }
+`;
+
+const FontAwesomeStyle = styled(FontAwesomeIcon)`
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  z-index: 1;
 `;
 
 function InputFlags({ setInputField, inputField }) {
@@ -20,23 +33,14 @@ function InputFlags({ setInputField, inputField }) {
   };
 
   return (
-    <>
-      <FontAwesomeIcon
-        icon={faSearch}
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "15px",
-          transform: "translateY(-50%)",
-          zIndex: "1",
-        }}
-      />
+    <div style={{ position: "relative" }}>
+      <FontAwesomeStyle icon={faSearch} />
       <Input
         placeholder="Search for a country"
         onChange={handleChange}
         value={inputField}
       />
-    </>
+    </div>
   );
 }
 
