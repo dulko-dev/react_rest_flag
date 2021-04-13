@@ -16,7 +16,7 @@
     <tr>
       <td>
         <p>This is a simple two pages site where customer can find information about country. We can find it by search input, or by select option we can reduce our searching for regions. App has dark and light mode</p>
-        <p>This is the desktop version (RWD site is in progress)</p>
+        <p>This is full responivity version</p>
         <p>This project was bootstrapped with - <a href='https://github.com/facebook/create-react-app' <p>Create React App </p></a></p>
       </td>
     </tr>
