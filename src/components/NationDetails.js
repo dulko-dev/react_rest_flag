@@ -7,7 +7,7 @@ import loading from "../assets/loading.gif";
 import { Link } from "react-router-dom";
 
 const WrapperDetail = styled.div`
-  width: 1400px;
+  max-width: 1400px;
   margin: 0 auto;
 `;
 
@@ -28,11 +28,25 @@ const ContainerDetail = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 75px;
+
+  @media (max-width: 950px) {
+    flex-direction: column;
+  }
 `;
 const FlagBox = styled.div`
-  width: 600px;
-  height: 400px;
+  max-width: 600px;
+  max-height: 400px;
   border: 15px solid ${({ theme }) => theme.nav};
+  margin-left:20px;
+
+  @media (max-width: 950px) and (min-width:201px) {
+    max-width: 950px;
+    max-height: 100%;
+    margin-right:20px;
+  }
+  @media (max-width:200px){
+    min-width:200px
+  }
 `;
 const FlagImg = styled.img`
   width: 100%;
@@ -43,30 +57,73 @@ const FlagImg = styled.img`
 const TextBox = styled.div`
   position: relative;
   margin-left: 50px;
-  width: 600px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1073px) and (min-width: 949px) {
+    position: static;
+  }
+
+  @media (max-width: 950px) and (min-width: 949px) {
+    margin-left: 25px;
+  }
+
 `;
 
 const Title = styled.h2`
   font-size: 2.2em;
   padding-bottom: 20px;
+
+  @media (max-width: 950px) {
+    padding-top: 20px;
+  }
+  
+  @media(max-width:476px){
+   font-size:1.4em; 
+  }
 `;
 
 const Text = styled.p`
-  width: inherit;
+  max-width: 100%;
   padding-bottom: 15px;
   color: ${({ theme }) => theme.sub};
+  
+  @media(max-width:476px){
+   font-size:0.8em; 
+  }
+
   &:last-child {
     padding-top: 35px;
-    width: 600px;
+    max-width: 600px;
+    @media (max-width: 1250px) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 1073px) and (min-width:950px) {
+      position: absolute;
+      bottom: -150px;
+      left: 25px;
+    }
   }
 `;
+
 const SpanText = styled.span`
   width: 100%;
   font-weight: 600;
   padding-left: 10px;
   color: ${({ theme }) => theme.text};
+
+  @media (max-width: 1073px){
+    padding-top:10px;
+  }
+`;
+
+const SpanTextBorders = styled(SpanText)`
+  @media (max-width: 1250px) {
+    padding-left: 0;
+    padding-top:10px;
+  }
 `;
 
 const BordersBorder = styled.span`
@@ -75,7 +132,7 @@ const BordersBorder = styled.span`
   padding: 2px 22px;
   margin-right: 5px;
   cursor: pointer;
-  display:inline-block;
+  display: inline-block;
   margin-top: 5px;
   margin-bottom: 5px;
   &:hover {
@@ -209,16 +266,16 @@ function NationDetails({ match }) {
             <Text>
               Borders:
               {detail.borders && detail.borders.length === 0 && (
-                <SpanText>Sorry, but there are no data to display</SpanText>
+                <SpanText>Sorry, but <span style={{color:'#90323D'}}>{detail.name}</span> doesn't border with any countries</SpanText>
               )}
-              <SpanText>
+              <SpanTextBorders>
                 {detail.borders &&
                   detail.borders.map((el, index) => (
                     <StyledLink to={`/${el}`} key={index}>
-                      <BordersBorder >{el}</BordersBorder>
+                      <BordersBorder>{el}</BordersBorder>
                     </StyledLink>
                   ))}
-              </SpanText>
+              </SpanTextBorders>
             </Text>
           </TextBox>
           <Error>{error}</Error>

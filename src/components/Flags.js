@@ -35,8 +35,12 @@ const FirstRowContainer = styled.div`
 const SecondRowContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap;
   max-width: 1400px;
+  flex-wrap:wrap;
+
+  @media (max-width: 1359px){
+    justify-content:center;
+  }
 `;
 
 const Error = styled.p`

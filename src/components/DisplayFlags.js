@@ -8,6 +8,10 @@ const WrapperDisplayFlags = styled.div`
   border-radius: 15px;
   max-width: 280px;
   margin: 15px 30px;
+
+  @media (max-width: 559px) {
+    margin: 15px 0;
+  }
 `;
 
 const ImageFlags = styled.img`

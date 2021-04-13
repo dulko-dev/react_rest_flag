@@ -4,7 +4,7 @@ import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Selector = styled.select`
-  padding: 20px 40px;
+  padding: 24px 40px;
   color: ${({ theme }) => theme.text};
   border: none;
   border-radius: 7px;
