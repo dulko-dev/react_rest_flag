@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const WrapperDisplayFlags = styled.div`
-  height: 350px;
+  height: 370px;
   border: 15px solid ${({ theme }) => theme.nav};
   border-radius: 15px;
-  max-width: 280px;
+  width: 280px;
+  max-width: 100%;
   margin: 15px 30px;
 
   @media (max-width: 559px) {
@@ -50,9 +51,9 @@ const StyledLink = styled(Link)`
 function DisplayFlags({ flag }) {
   return (
     <WrapperDisplayFlags>
-      <ImageFlags src={flag.flag} />
-      <StyledLink to={`/${flag.alpha3Code}`}>
-        <NameFlags>{flag.name}</NameFlags>
+      <ImageFlags src={flag.flags.png} />
+      <StyledLink to={`/${flag.cca3}`}>
+        <NameFlags>{flag.name.common}</NameFlags>
         <TextFlags>
           Population:
           <SpanFlags>{flag.population}</SpanFlags>
@@ -63,7 +64,9 @@ function DisplayFlags({ flag }) {
         </TextFlags>
         <TextFlags>
           Capital:
-          <SpanFlags>{flag.capital}</SpanFlags>
+          <SpanFlags>
+            {flag.capital === undefined ? "" : flag.capital[0]}
+          </SpanFlags>
         </TextFlags>
       </StyledLink>
     </WrapperDisplayFlags>

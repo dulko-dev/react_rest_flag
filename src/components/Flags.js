@@ -36,10 +36,10 @@ const SecondRowContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   max-width: 1400px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 
-  @media (max-width: 1359px){
-    justify-content:center;
+  @media (max-width: 1359px) {
+    justify-content: center;
   }
 `;
 
@@ -68,6 +68,8 @@ function Flags() {
   const [filteredCountries, setfilteredCountries] = useState("");
   const [region, setRegion] = useState("filter");
   const [loading, setLoading] = useState(false);
+
+console.log(data)
 
   useEffect(() => {
     const filterRegion = () => {
@@ -104,7 +106,7 @@ function Flags() {
     setLoading(true);
     let abort = new AbortController();
     const fetchData = async () => {
-      const response = await fetch(`https://restcountries.eu/rest/v2/all`, {
+      const response = await fetch(`https://restcountries.com/v3.1/all`, {
         signal: abort.signal,
       });
 
@@ -129,7 +131,7 @@ function Flags() {
     setfilteredCountries(
       Array.isArray(data) &&
         data.filter((country) => {
-          return country.name.toLowerCase().includes(inputField.toLowerCase());
+          return country.name.common.toLowerCase().includes(inputField.toLowerCase());
         })
     );
   }, [inputField, data]);
@@ -148,7 +150,7 @@ function Flags() {
             filteredCountries.map((flag) => (
               <DisplayFlags
                 flag={flag}
-                key={flag.numericCode}
+                key={flag.name.common}
                 region={region}
               />
             ))}
