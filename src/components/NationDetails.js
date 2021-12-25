@@ -175,6 +175,7 @@ function NationDetails({ match }) {
   const backSite = useHistory();
   const [load, setLoad] = useState(false);
 
+
   useEffect(() => {
     const abort = new AbortController();
     const FetchItem = async () => {
@@ -183,7 +184,6 @@ function NationDetails({ match }) {
         `https://restcountries.com/v3.1/alpha/${match.params.id}`,
         { signal: abort.signal }
       );
-      console.log(data)
       if (!data.ok) {
         const mssg = `error ${data.status}`;
         setError(mssg);
@@ -191,6 +191,7 @@ function NationDetails({ match }) {
 
       const detail = await data.json();
       setLoad(false);
+
       return detail;
     };
     FetchItem()
@@ -202,96 +203,80 @@ function NationDetails({ match }) {
   console.log(detail);
 
   return (
-    // <WrapperDetail>
-    //   <BackButton type="button" onClick={() => backSite.push("/")}>
-    //     <FontAwesomeIcon
-    //       icon={faAngleLeft}
-    //       size="lg"
-    //       style={{ marginRight: "15px" }}
-    //     />
-    //     Back
-    //   </BackButton>
+    <WrapperDetail>
+      <BackButton type="button" onClick={() => backSite.push("/")}>
+        <FontAwesomeIcon
+          icon={faAngleLeft}
+          size="lg"
+          style={{ marginRight: "15px" }}
+        />
+        Back
+      </BackButton>
 
-    //   {load ? (
-    //     <LoadIcon />
-    //   ) : (
-    //     <ContainerDetail>
-    //       <FlagBox>
-    //         <FlagImg src={detail.flags.png} />
-    //       </FlagBox>
-    //       <TextBox>
-    //         <Title>{detail.name.official}</Title>
-    //         <Text>
-    //           {/* Native Name:<SpanText>{detail.nativeName}</SpanText> */}
-    //         </Text>
-    //         <Text>
-    //           Population:<SpanText>{detail.population}</SpanText>
-    //         </Text>
-    //         <Text>
-    //           Region:<SpanText>{detail.region}</SpanText>
-    //         </Text>
-    //         <Text>
-    //           Sub Region:<SpanText>{detail.subregion}</SpanText>
-    //         </Text>
-    //         <Text>
-    //           Capital:
-    //           <SpanText>
-    //             {detail.capital != undefined && detail.capital[0]}
-    //           </SpanText>
-    //         </Text>
-    //         <Text>
-    //           Currency symbol:
-    //           <SpanText>
-    //             {detail.currencies &&
-    //               detail.currencies.map((el, index) => (
-    //                 <span
-    //                   style={{ paddingRight: "7px", display: "inline-block" }}
-    //                   key={index}
-    //                 >
-    //                   {el.name}
-    //                 </span>
-    //               ))}
-    //           </SpanText>
-    //         </Text>
-    //         <Text>
-    //           Languages:
-    //           <SpanText>
-    //             {detail.languages &&
-    //               detail.languages.map((el, index) => (
-    //                 <span
-    //                   style={{ paddingRight: "7px", display: "inline-block" }}
-    //                   key={index}
-    //                 >
-    //                   {el.name}
-    //                 </span>
-    //               ))}
-    //           </SpanText>
-    //         </Text>
-    //         <Text>
-    //           Borders:
-    //           {detail.borders && detail.borders.length === 0 && (
-    //             <SpanText>
-    //               Sorry, but{" "}
-    //               <span style={{ color: "#90323D" }}>{detail.name}</span>{" "}
-    //               doesn't border with any countries
-    //             </SpanText>
-    //           )}
-    //           <SpanTextBorders>
-    //             {detail.borders &&
-    //               detail.borders.map((el, index) => (
-    //                 <StyledLink to={`/${el}`} key={index}>
-    //                   <BordersBorder>{el}</BordersBorder>
-    //                 </StyledLink>
-    //               ))}
-    //           </SpanTextBorders>
-    //         </Text>
-    //       </TextBox>
-    //       <Error>{error}</Error>
-    //     </ContainerDetail>
-    //   )}
-    // </WrapperDetail>
-
-    <h1>Hello</h1>);
+      {load ? (
+        <LoadIcon />
+      ) : (
+        <>
+          {detail.length > 0 &&
+            detail.map((detail) => (
+              <ContainerDetail>
+                <FlagBox>
+                  <FlagImg src={detail.flags.png} />
+                </FlagBox>
+                <TextBox>
+                  <Title>{detail.name.official}</Title>
+                  <Text>
+                    {/* Native Name:<SpanText>{detail.nativeName}</SpanText> */}
+                  </Text>
+                  <Text>
+                    Population:<SpanText>{detail.population}</SpanText>
+                  </Text>
+                  <Text>
+                    Region:<SpanText>{detail.region}</SpanText>
+                  </Text>
+                  <Text>
+                    Sub Region:<SpanText>{detail.subregion}</SpanText>
+                  </Text>
+                  <Text>
+                    Capital:
+                    <SpanText>
+                      {detail.capital != undefined && detail.capital[0]}
+                    </SpanText>
+                  </Text>
+                  <Text>
+                    Currency symbol:
+                    <SpanText>{detail.currencies.PLN.name}</SpanText>
+                  </Text>
+                  <Text>
+                    Languages:
+                    <SpanText>{detail.languages["pol"]}</SpanText>
+                  </Text>
+                  <Text>
+                    Borders:
+                    {detail.borders && detail.borders.length === 0 && (
+                      <SpanText>
+                        Sorry, but{" "}
+                        <span style={{ color: "#90323D" }}>{detail.name}</span>{" "}
+                        doesn't border with any countries
+                      </SpanText>
+                    )}
+                    <SpanTextBorders>
+                      {detail.borders &&
+                        detail.borders.map((el, index) => (
+                          <StyledLink to={`/${el}`} key={index}>
+                            <BordersBorder>{el}</BordersBorder>
+                          </StyledLink>
+                        ))}
+                    </SpanTextBorders>
+                  </Text>
+                </TextBox>
+                <Error>{error}</Error>
+              </ContainerDetail>
+            ))}
+        </>
+      )}
+    </WrapperDetail>
+  );
 }
 
 export default NationDetails;
