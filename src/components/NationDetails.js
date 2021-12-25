@@ -175,14 +175,15 @@ function NationDetails({ match }) {
   const backSite = useHistory();
   const [load, setLoad] = useState(false);
 
-
   useEffect(() => {
     const abort = new AbortController();
     const FetchItem = async () => {
       setLoad(true);
       const data = await fetch(
         `https://restcountries.com/v3.1/alpha/${match.params.id}`,
-        { signal: abort.signal }
+        {
+          signal: abort.signal,
+        }
       );
       if (!data.ok) {
         const mssg = `error ${data.status}`;
@@ -201,7 +202,6 @@ function NationDetails({ match }) {
   }, [match.params.id]);
 
   console.log(detail);
-
   return (
     <WrapperDetail>
       <BackButton type="button" onClick={() => backSite.push("/")}>
@@ -226,7 +226,16 @@ function NationDetails({ match }) {
                 <TextBox>
                   <Title>{detail.name.official}</Title>
                   <Text>
-                    {/* Native Name:<SpanText>{detail.nativeName}</SpanText> */}
+                    Native Name:
+                    <SpanText>
+                      {
+                        detail.name.nativeName[
+                          Object.keys(detail.name.nativeName).length > 1
+                            ? Object.keys(detail.name.nativeName)[1]
+                            : Object.keys(detail.name.nativeName)[0]
+                        ].official
+                      }
+                    </SpanText>
                   </Text>
                   <Text>
                     Population:<SpanText>{detail.population}</SpanText>
@@ -245,11 +254,24 @@ function NationDetails({ match }) {
                   </Text>
                   <Text>
                     Currency symbol:
-                    <SpanText>{detail.currencies.PLN.name}</SpanText>
+                    <SpanText>
+                      {
+                        detail.currencies[Object.keys(detail.currencies)[0]]
+                          .name
+                      }
+                    </SpanText>
                   </Text>
                   <Text>
                     Languages:
-                    <SpanText>{detail.languages["pol"]}</SpanText>
+                    <SpanText>
+                      {
+                        detail.languages[
+                          Object.keys(detail.languages).length > 1
+                            ? Object.keys(detail.languages)[1]
+                            : Object.keys(detail.languages)[0]
+                        ]
+                      }
+                    </SpanText>
                   </Text>
                   <Text>
                     Borders:
