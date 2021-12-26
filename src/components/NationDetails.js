@@ -71,7 +71,7 @@ const TextBox = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 2.2em;
+  font-size: 2.1em;
   padding-bottom: 20px;
 
   @media (max-width: 950px) {
@@ -201,7 +201,6 @@ function NationDetails({ match }) {
     return () => abort.abort();
   }, [match.params.id]);
 
-  console.log(detail);
   return (
     <WrapperDetail>
       <BackButton type="button" onClick={() => backSite.push("/")}>
@@ -219,12 +218,15 @@ function NationDetails({ match }) {
         <>
           {detail.length > 0 &&
             detail.map((detail) => (
-              <ContainerDetail>
+              <ContainerDetail key={detail.cca3}>
                 <FlagBox>
                   <FlagImg src={detail.flags.png} />
                 </FlagBox>
                 <TextBox>
                   <Title>{detail.name.official}</Title>
+                  <Text>
+                    Common Name:<SpanText>{detail.name.common}</SpanText>
+                  </Text>
                   <Text>
                     Native Name:
                     <SpanText>
@@ -249,7 +251,7 @@ function NationDetails({ match }) {
                   <Text>
                     Capital:
                     <SpanText>
-                      {detail.capital != undefined && detail.capital[0]}
+                      {detail.capital !== undefined && detail.capital[0]}
                     </SpanText>
                   </Text>
                   <Text>

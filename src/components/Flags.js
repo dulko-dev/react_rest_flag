@@ -69,8 +69,6 @@ function Flags() {
   const [region, setRegion] = useState("filter");
   const [loading, setLoading] = useState(false);
 
-console.log(data)
-
   useEffect(() => {
     const filterRegion = () => {
       switch (region) {
